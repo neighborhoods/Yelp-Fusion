@@ -18,7 +18,11 @@ class YelpTest extends TestCase
 
     public function testGetBearerTokenObjectResponse()
     {
-        $yelp = new Yelp($this->getMockHandler(new Response(200, [], '{"test": "success"}')));
+        $yelp = new Yelp(
+            $this->getMockHandler(
+                new Response(200, [], '{"test": "success"}')
+            )
+        );
         $response = $yelp->getBearerTokenObject('clientId', 'clientSecret');
 
         $this->assertEquals('object', gettype($response));
@@ -33,8 +37,14 @@ class YelpTest extends TestCase
             'client_type' => 'client_credentials',
         ];
         $requests = [];
-        $yelp = new Yelp($this->getMockHandler(new Response(200, [], '{"test": "success"}'), $requests));
-        $yelp->getBearerTokenObject($postParams['client_id'], $postParams['client_secret']);
+        $yelp = new Yelp(
+            $this->getMockHandler(
+                new Response(200, [], '{"test": "success"}'), $requests
+            )
+        );
+        $yelp->getBearerTokenObject(
+            $postParams['client_id'], $postParams['client_secret']
+        );
 
         $requestHeaders = $requests[0]['request']->getHeaders();
         $requestBody = (string)$requests[0]['request']->getBody();
@@ -44,14 +54,18 @@ class YelpTest extends TestCase
         $this->assertEquals(Yelp::HTTP_POST, $requests[0]['request']->getMethod());
         $this->assertEquals($postParams, $parsedRequestBody);
 
-        foreach(Yelp::REQUEST_HEADERS as $headerKey => $headerValue) {
+        foreach (Yelp::REQUEST_HEADERS as $headerKey => $headerValue) {
             $this->assertEquals($headerValue, $requestHeaders[$headerKey][0]);
         }
     }
 
     public function testGetBearerTokenObjectThrowsOnCommunicationError()
     {
-        $yelp = new Yelp($this->getMockHandler(new RequestException('error', new Request('GET', 'test'))));
+        $yelp = new Yelp(
+            $this->getMockHandler(
+                new RequestException('error', new Request('GET', 'test'))
+            )
+        );
 
         $this->expectException(Exception::class);
 
@@ -60,7 +74,11 @@ class YelpTest extends TestCase
 
     public function testGetBearerTokenObjectThrowsOnNon200Response()
     {
-        $yelp = new Yelp($this->getMockHandler(new Response(201, [], '{"test": "success"}')));
+        $yelp = new Yelp(
+            $this->getMockHandler(
+                new Response(201, [], '{"test": "success"}')
+            )
+        );
 
         $this->expectException(Exception::class);
 
@@ -69,7 +87,11 @@ class YelpTest extends TestCase
 
     public function testGetBearerTokenObjectThrowsOnNonJSONResponse()
     {
-        $yelp = new Yelp($this->getMockHandler(new Response(200, [], 'This is not JSON')));
+        $yelp = new Yelp(
+            $this->getMockHandler(
+                new Response(200, [], 'This is not JSON')
+            )
+        );
 
         $this->expectException(Exception::class);
 
@@ -78,7 +100,11 @@ class YelpTest extends TestCase
 
     public function testSearchResponse()
     {
-        $yelp = new Yelp($this->getMockHandler(new Response(200, [], '{"test": "success"}')));
+        $yelp = new Yelp(
+            $this->getMockHandler(
+                new Response(200, [], '{"test": "success"}')
+            )
+        );
         $response = $yelp->search([], 'BEARER TOKEN');
 
         $this->assertEquals('object', gettype($response));
@@ -93,7 +119,12 @@ class YelpTest extends TestCase
             'longitude'=> '-87.611906',
         ];
         $requests = [];
-        $yelp = new Yelp($this->getMockHandler(new Response(200, [], '{"test": "success"}'), $requests));
+        $yelp = new Yelp(
+            $this->getMockHandler(
+                new Response(200, [], '{"test": "success"}'),
+                $requests
+            )
+        );
         $yelp->search($params, 'BEARER TOKEN');
 
         $requestHeaders = $requests[0]['request']->getHeaders();
@@ -104,14 +135,18 @@ class YelpTest extends TestCase
         $this->assertEquals(Yelp::HTTP_GET, $requests[0]['request']->getMethod());
         $this->assertEquals($params, $parsedRequestQuery);
 
-        foreach(Yelp::REQUEST_HEADERS as $headerKey => $headerValue) {
+        foreach (Yelp::REQUEST_HEADERS as $headerKey => $headerValue) {
             $this->assertEquals($headerValue, $requestHeaders[$headerKey][0]);
         }
     }
 
     public function testSearchThrowsOnCommunicationError()
     {
-        $yelp = new Yelp($this->getMockHandler(new RequestException('error', new Request('GET', 'test'))));
+        $yelp = new Yelp(
+            $this->getMockHandler(
+                new RequestException('error', new Request('GET', 'test'))
+            )
+        );
 
         $this->expectException(Exception::class);
 
@@ -120,7 +155,11 @@ class YelpTest extends TestCase
 
     public function testSearchThrowsOnNon200Response()
     {
-        $yelp = new Yelp($this->getMockHandler(new Response(201, [], '{"test": "success"}')));
+        $yelp = new Yelp(
+            $this->getMockHandler(
+                new Response(201, [], '{"test": "success"}')
+            )
+        );
 
         $this->expectException(Exception::class);
 
@@ -129,7 +168,11 @@ class YelpTest extends TestCase
 
     public function testSearchThrowsOnNonJSONResponse()
     {
-        $yelp = new Yelp($this->getMockHandler(new Response(200, [], 'This is not JSON')));
+        $yelp = new Yelp(
+            $this->getMockHandler(
+                new Response(200, [], 'This is not JSON')
+            )
+        );
 
         $this->expectException(Exception::class);
 
