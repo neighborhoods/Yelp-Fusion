@@ -1,4 +1,16 @@
 <?php
+/**
+ * Test suite for the Yelp library
+ *
+ * PHP version 5.6
+ *
+ * @category Library
+ * @package  YelpTest
+ * @author   Matt Stypa <matt.stypa@55places.com>
+ * @author   Rashaud Teague <rashaud.teague@55places.com>
+ * @license  MIT https://opensource.org/licenses/MIT
+ * @link     https://github.com/neighborhoods/Yelp-Fusion
+ */
 
 namespace Neighborhoods\Tests\Libraries;
 
