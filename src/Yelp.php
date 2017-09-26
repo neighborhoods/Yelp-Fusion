@@ -106,7 +106,7 @@ class Yelp
      * Parses the response (decodes the json response)
      *
      * @param $response
-     * @return mixed
+     * @return object
      * @throws Exception
      */
     protected function parseResponse($response)
