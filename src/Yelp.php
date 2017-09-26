@@ -1,10 +1,27 @@
 <?php
+/**
+ * A library that interfaces with the Yelp Fusion (v3) API
+ *
+ * PHP version 5.6
+ *
+ * @category Library
+ * @package  Yelp
+ * @author   Matt Stypa <matt.stypa@55places.com>
+ * @author   Rashaud Teague <rashaud.teague@55places.com>
+ * @license  MIT https://opensource.org/licenses/MIT
+ * @link     https://github.com/neighborhoods/Yelp-Fusion
+ */
 
 namespace Neighborhoods\Libraries;
 
 use Exception;
 use GuzzleHttp\Client;
 
+/**
+ * Class Yelp
+ *
+ * @package Neighborhoods\Libraries
+ */
 class Yelp
 {
     const BASE_URI = 'https://api.yelp.com/';
@@ -20,6 +37,11 @@ class Yelp
 
     protected $guzzle;
 
+    /**
+     * Yelp constructor.
+     *
+     * @param null $handler
+     */
     public function __construct($handler = null)
     {
         $options = [
@@ -35,6 +57,13 @@ class Yelp
         $this->guzzle = new Client($options);
     }
 
+    /**
+     * Get the bearer token
+     *
+     * @param $clientId
+     * @param $clientSecret
+     * @return mixed
+     */
     public function getBearerTokenObject($clientId, $clientSecret)
     {
         return $this->parseResponse(
@@ -51,6 +80,13 @@ class Yelp
         );
     }
 
+    /**
+     * Gets the search results
+     *
+     * @param $terms
+     * @param $bearerToken
+     * @return mixed
+     */
     public function search($terms, $bearerToken)
     {
         return $this->parseResponse(
@@ -66,6 +102,13 @@ class Yelp
         );
     }
 
+    /**
+     * Parses the response (decodes the json response)
+     *
+     * @param $response
+     * @return mixed
+     * @throws Exception
+     */
     protected function parseResponse($response)
     {
         if ($response->getStatusCode() !== 200) {
