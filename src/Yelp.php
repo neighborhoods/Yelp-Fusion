@@ -28,7 +28,7 @@ class Yelp
             'headers'  => self::REQUEST_HEADERS,
         ];
 
-        if($handler) {
+        if ($handler) {
             $options['handler'] = $handler;
         }
 
@@ -37,26 +37,37 @@ class Yelp
 
     public function getBearerTokenObject($clientId, $clientSecret)
     {
-        return $this->parseResponse($this->guzzle->post(self::ENDPOINT_TOKEN, [
-            'form_params' => [
-                'client_id'     => $clientId,
-                'client_secret' => $clientSecret,
-                'client_type'   => self::GRANT_TYPE,
-            ],
-        ]));
+        return $this->parseResponse(
+            $this->guzzle->post(
+                self::ENDPOINT_TOKEN,
+                [
+                    'form_params' => [
+                        'client_id'     => $clientId,
+                        'client_secret' => $clientSecret,
+                        'client_type'   => self::GRANT_TYPE,
+                    ],
+                ]
+            )
+        );
     }
 
     public function search($terms, $bearerToken)
     {
-        return $this->parseResponse($this->guzzle->get(self::ENDPOINT_SEARCH, [
-            'headers' => [
-                'authorization' => 'Bearer ' . $bearerToken,
-            ],
-            'query'   => $terms,
-        ]));
+        return $this->parseResponse(
+            $this->guzzle->get(
+                self::ENDPOINT_SEARCH,
+                [
+                    'headers' => [
+                        'authorization' => 'Bearer ' . $bearerToken,
+                    ],
+                    'query'   => $terms,
+                ]
+            )
+        );
     }
 
-    protected function parseResponse($response) {
+    protected function parseResponse($response)
+    {
         if ($response->getStatusCode() !== 200) {
             throw new Exception('Invalid response');
         }
