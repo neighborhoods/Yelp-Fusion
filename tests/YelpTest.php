@@ -5,14 +5,14 @@
  * PHP version 5.6
  *
  * @category Library
- * @package  Yelp
+ * @package  Neighborhoods\YelpFusion
  * @author   Matt Stypa <matt.stypa@55places.com>
  * @author   Rashaud Teague <rashaud.teague@55places.com>
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/neighborhoods/Yelp-Fusion
  */
 
-namespace Neighborhoods\Tests\YelpFusion;
+namespace Neighborhoods\YelpFusion\test;
 
 use Exception;
 use GuzzleHttp\Handler\MockHandler;
