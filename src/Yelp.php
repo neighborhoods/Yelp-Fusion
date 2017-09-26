@@ -12,7 +12,7 @@
  * @link     https://github.com/neighborhoods/Yelp-Fusion
  */
 
-namespace Neighborhoods\Libraries;
+namespace Neighborhoods\YelpFusion;
 
 use Exception;
 use GuzzleHttp\Client;
@@ -20,7 +20,7 @@ use GuzzleHttp\Client;
 /**
  * Class Yelp
  *
- * @package Neighborhoods\Libraries
+ * @package Neighborhoods\YelpFusion
  */
 class Yelp
 {
@@ -38,7 +38,7 @@ class Yelp
     protected $guzzle;
 
     /**
-     * Yelp constructor.
+     * Yelp constructor. Instantiates Guzzle client.
      *
      * @param null $handler
      */
@@ -58,11 +58,11 @@ class Yelp
     }
 
     /**
-     * Get the bearer token
+     * Gets the bearer token
      *
      * @param $clientId
      * @param $clientSecret
-     * @return mixed
+     * @return object
      */
     public function getBearerTokenObject($clientId, $clientSecret)
     {
@@ -85,7 +85,7 @@ class Yelp
      *
      * @param $terms
      * @param $bearerToken
-     * @return mixed
+     * @return object
      */
     public function search($terms, $bearerToken)
     {
