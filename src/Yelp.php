@@ -5,7 +5,7 @@
  * PHP version 5.6
  *
  * @category Library
- * @package  Yelp
+ * @package  Neighborhoods\YelpFusion
  * @author   Matt Stypa <matt.stypa@55places.com>
  * @author   Rashaud Teague <rashaud.teague@55places.com>
  * @license  MIT https://opensource.org/licenses/MIT
@@ -63,6 +63,7 @@ class Yelp
      * @param $clientId
      * @param $clientSecret
      * @return object
+     * @throws Exception
      */
     public function getBearerTokenObject($clientId, $clientSecret)
     {
@@ -86,6 +87,7 @@ class Yelp
      * @param $terms
      * @param $bearerToken
      * @return object
+     * @throws Exception
      */
     public function search($terms, $bearerToken)
     {
