@@ -38,9 +38,9 @@ class Yelp
     protected $guzzle;
 
     /**
-     * Yelp constructor. Instantiates Guzzle client.
+     * Yelp constructor.
      *
-     * @param null $handler
+     * @param null $handler, optional Guzzle handler to assist for testing
      */
     public function __construct($handler = null)
     {
