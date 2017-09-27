@@ -7,7 +7,7 @@ A library that interfaces with the Yelp Fusion (v3) API, utilizing the GuzzleHtt
 #### Requirements
 * PHP >= 5.6
 * [GuzzleHttp 6.0](http://docs.guzzlephp.org/)
-* [Composer (for installation)](https://getcomposer.org/)
+* [Composer (recommended for installation)](https://getcomposer.org/)
 * Yelp Fusion API authorization: Client ID and Client Secret
 
 #### Installation
@@ -27,6 +27,12 @@ A library that interfaces with the Yelp Fusion (v3) API, utilizing the GuzzleHtt
 ## Usage
 
 Before we go into the main usage of the this library, we recommend (as do Yelp themselves) caching your Yelp Oath Token.
+
+You may need to require `vendor/autoload.php` before usage of the library.
+
+```php
+require_once 'vendor/autoload.php';
+```
 
 #### Getting your Yelp Bearer Oath Token
 
