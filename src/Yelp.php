@@ -126,4 +126,3 @@ class Yelp
         return $parsedResponse;
     }
 }
-
