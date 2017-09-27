@@ -14,14 +14,14 @@ A library that interfaces with the Yelp Fusion (v3) API, utilizing the GuzzleHtt
 
 1. Add `"neighborhoods/yelp-fusion": "<version>"` to the composer.json file's `required` section.
     * Create a composer.json file in your project's root directory _if_ one does not exist.
-    * Add the following to the new composer.json.
-      ```
-      {
-        "require": {
-          	"neighborhoods/yelp-fusion": "<version>"
+        * Add the following to the new composer.json.
+          ```
+          {
+            "require": {
+                "neighborhoods/yelp-fusion": "<version>"
+              }
           }
-      }
-      ```
+          ```
 2. Run `composer update --no-dev` (if you already have your project set up with composer) or `composer install --no-dev` to install Neighborhoods Yelp-Fusion Library.
 
 ## Usage
