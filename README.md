@@ -30,17 +30,38 @@ Before we go into the main usage of the this library, we recommend (as do Yelp t
 
 #### Getting your Yelp Bearer Oath Token
 
+Replace `CLIENT_ID` and `CLIENT_SECRET` with _your_ assigned client id and secret from Yelp.
+
 ```php
 $yelp = new Yelp();
 $oauthTokenData = $yelp->getBearerTokenObject("CLIENT_ID", "CLIENT_SECRET");
-$token = $oauthTokenData->access_token;
+$oauthToken = $oauthTokenData->access_token;
 ```
 
-`Yelp::getBearerTokenObject` returns a json object consisting with the properties: `access_token`, `token_type`, and `expires_in`. These are defined in the [Yelp's authentication documentation](https://www.yelp.com/developers/documentation/v3/authentication). `$oauthTokenData->access_token` is what you _should_ cache.
+`Yelp::getBearerTokenObject` returns a json object consisting with the properties: `access_token`, `token_type`, and `expires_in`. These are defined in the [Yelp's authentication documentation](https://www.yelp.com/developers/documentation/v3/authentication). `$oauthToken->access_token` is the data you _should_ cache.
 
 #### Requesting a search
 
-```php
+You can reference [Yelp's business search documentation](https://www.yelp.com/developers/documentation/v3/business_search) to find which parameters you'd like your application to use.
 
+`$params` is an associative array. So for example your params could look like:
+```php
+$params = [
+    'categories' => 'arts',
+    'latitude'   => 41.879562,
+    'longitude'  => -87.624205,
+    'radius'     => 16093,
+];
 ```
 
+Would return businesses under the category 'arts' in downtown Chicago within a ten mile radius (16093 meters).
+
+```php
+$yelpData = $this->yelp->search($params, $oauthToken);
+$businesses = $yelpData->businesses;
+foreach ($businesses as $business) {
+    //...
+}
+```
+
+With `$business` you can now access a business' properties, examples: `$business->name`, `$business->rating`.
