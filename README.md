@@ -1,6 +1,6 @@
 # Neighborhoods Yelp-Fusion Library
 
-[![Build Status](https://travis-ci.org/neighborhoods/Yelp-Fusion.svg?branch=master)](https://travis-ci.org/neighborhoods/Yelp-Fusion) [![Latest Stable Version](https://poser.pugx.org/neighborhoods/yelp-fusion/version)](https://packagist.org/packages/neighborhoods/yelp-fusion)
+[![Build Status](https://travis-ci.org/neighborhoods/Yelp-Fusion.svg?branch=master)](https://travis-ci.org/neighborhoods/Yelp-Fusion) [![Latest Stable Version](https://poser.pugx.org/neighborhoods/yelp-fusion/version)](https://packagist.org/packages/neighborhoods/yelp-fusion) [![Total Downloads](https://poser.pugx.org/neighborhoods/yelp-fusion/downloads)](https://packagist.org/packages/neighborhoods/yelp-fusion) [![License](https://poser.pugx.org/neighborhoods/yelp-fusion/license)](https://packagist.org/packages/neighborhoods/yelp-fusion)
 
 A library that interfaces with the Yelp Fusion (v3) API.
 
