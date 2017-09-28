@@ -31,7 +31,8 @@ class Yelp
     const TIMEOUT_IN_SECONDS = 5;
     const HTTP_GET = 'GET';
     const HTTP_POST = 'POST';
-    const REQUEST_HEADERS = [
+
+    protected $requestHeaders = [
         'cache-control' => 'no-cache',
     ];
 
@@ -47,7 +48,7 @@ class Yelp
         $options = [
             'base_uri' => self::BASE_URI,
             'timeout'  => self::TIMEOUT_IN_SECONDS,
-            'headers'  => self::REQUEST_HEADERS,
+            'headers'  => $this->requestHeaders,
         ];
 
         if ($handler) {
