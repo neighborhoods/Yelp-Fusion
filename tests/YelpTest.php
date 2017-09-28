@@ -27,6 +27,9 @@ use Neighborhoods\YelpFusion\Yelp;
 class YelpTest extends TestCase
 {
     protected $yelp;
+    protected $requestHeaders = [
+        'cache-control' => 'no-cache',
+    ];
 
     public function testGetBearerTokenObjectResponse()
     {
@@ -66,7 +69,7 @@ class YelpTest extends TestCase
         $this->assertEquals(Yelp::HTTP_POST, $requests[0]['request']->getMethod());
         $this->assertEquals($postParams, $parsedRequestBody);
 
-        foreach (Yelp::REQUEST_HEADERS as $headerKey => $headerValue) {
+        foreach ($this->requestHeaders as $headerKey => $headerValue) {
             $this->assertEquals($headerValue, $requestHeaders[$headerKey][0]);
         }
     }
@@ -147,7 +150,7 @@ class YelpTest extends TestCase
         $this->assertEquals(Yelp::HTTP_GET, $requests[0]['request']->getMethod());
         $this->assertEquals($params, $parsedRequestQuery);
 
-        foreach (Yelp::REQUEST_HEADERS as $headerKey => $headerValue) {
+        foreach ($this->requestHeaders as $headerKey => $headerValue) {
             $this->assertEquals($headerValue, $requestHeaders[$headerKey][0]);
         }
     }
