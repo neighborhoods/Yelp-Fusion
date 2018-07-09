@@ -19,22 +19,12 @@ A library that interfaces with the Yelp Fusion (v3) API.
 
 ## Usage
 
-#### Getting Yelp Bearer Oath Token
+#### Getting API key
 
-Replace `CLIENT_ID` and `CLIENT_SECRET` with _your_ assigned client id and secret.
+Yelp Fusion API uses private API Keys to authenticate requests. In order to set up your access to Yelp Fusion API, you need to create an app with Yelp.
 
-```php
-$yelp = new Yelp();
-$oauthTokenData = $yelp->getBearerTokenObject('CLIENT_ID', 'CLIENT_SECRET');
-$oauthToken = $oauthTokenData->access_token;
-```
+See [Yelp's authentication documentation](https://www.yelp.com/developers/documentation/v3/authentication) for instructions.
 
-`getBearerTokenObject` returns a json object with the properties: `access_token`, `token_type`, and `expires_in`. These are defined in the [Yelp's authentication documentation](https://www.yelp.com/developers/documentation/v3/authentication).
-
-###### Note:
-
-You should cache the token and reuse it until it expires or is revoked.
- 
 #### Search
 
 ```php
@@ -45,7 +35,7 @@ $params = [
     'radius'     => 16093,
 ];
 
-$yelpData = $this->yelp->search($params, $oauthToken);
+$yelpData = $this->yelp->search($params, $apiKey);
 $businesses = $yelpData->businesses;
 ```
 
